@@ -2,13 +2,16 @@
   "name": "frontend-box",
   "displayName": "frontend-box",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
   },
   "keywords": [
-    "前端",
+    "前端盒子",
+    "前端博客",
+    "前端学习",
+    "公众号",
     "博客",
     "RSS"
   ],

@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "frontend-box" extension will be documented in this file.
+Github 源码：https://github.com/giscafer/vscode-frontend-box
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [v0.0.3]
 
-## [Unreleased]
-
-- Initial release
+- 支持 8 个源，4 个公众号、四个博客网站
