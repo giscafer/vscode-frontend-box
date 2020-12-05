@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.staticdn.net/giscafer/frontend-box/master/resources/logo.png" alt="前端盒子插件" width="148"/>
+<img src="https://raw.staticdn.net/giscafer/vscode-frontend-box/master/resources/logo.png" alt="前端盒子插件" width="148"/>
 
 # frontend-box（前端盒子）
 
