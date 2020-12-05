@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "frontend-box",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -12,6 +12,7 @@
     "博客",
     "RSS"
   ],
+  "icon": "resources/logo.png",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -49,6 +50,12 @@
       {
         "command": "frontend-box.helloWorld",
         "title": "Hello World"
+      }
+    ],
+    "viewsWelcome": [
+      {
+        "view": "view.other",
+        "contents": "WIP……敬请关注！！"
       }
     ]
   },

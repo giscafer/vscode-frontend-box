@@ -15,7 +15,7 @@
         console.log(url);
         document.querySelector(
           '.site'
-        ).innerHTML = `网页地址：<a href="${url}">${url}</a>`;
+        ).innerHTML = `网页地址：<a href="${url}">${url}</a>，提示：VSCode沙箱机制iframe页面无法打开a标签链接！`;
         iframeWrapEl.innerHTML = `<iframe
         src="${url}"
         frameborder="0"
