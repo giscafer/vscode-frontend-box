@@ -6,26 +6,28 @@
     <title>博客文章</title>
   </head>
   <body>
-    <div id="iframeWrap" style="min-width: 1320px; overflow-x: auto">
-      <h3>Loading… …</h3>
-    </div>
+    <h4 class="site"></h4>
+    <div id="iframeWrap" style="min-width: 1320px; overflow-x: auto"></div>
     <script>
       const iframeWrapEl = document.querySelector('#iframeWrap');
       const vscode = acquireVsCodeApi();
       function refreshIframe(url) {
         console.log(url);
+        document.querySelector(
+          '.site'
+        ).innerHTML = `网页地址：<a href="${url}">${url}</a>`;
         iframeWrapEl.innerHTML = `<iframe
         src="${url}"
         frameborder="0"
         sandbox="allow-popups allow-scripts allow-popups-to-escape-sandbox"
-        style="width: 100%; height: 900px"
+        style="width: 1200px; height: 700px"
       ></iframe>`;
       }
       window.addEventListener('message', (event) => {
         const msg = event.data;
         console.log(msg);
         switch (msg.command) {
-          case 'viewBlogByIframeCommand':
+          case 'viewBlogCommand':
             refreshIframe(msg.data.url);
             break;
         }

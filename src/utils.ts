@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Uri, Webview } from 'vscode';
 import globalState from './globalState';
 
 export function getTemplateFileContent(tplName: string) {
@@ -14,60 +15,39 @@ export function getTemplateFileContent(tplName: string) {
   return html;
 }
 
-export async function getHtmlFromUrl(url: string) {
+export async function getHtmlFromUrl(webview: Webview, url: string) {
+  const extensionUri = globalState.extensionContext.extensionUri;
+
   let html = await Axios.get(url).then((rep) => rep.data);
   const [sourceLink, scriptList] = findHtmlScriptLink(html, url);
   const [cssSourceLink, cssList] = findHtmlCSSLink(html, url);
-  console.log(sourceLink, scriptList);
+  // console.log(sourceLink, scriptList);
   const scriptRes = await batchGet(scriptList);
   scriptRes.forEach((item, index) => {
-    console.log(sourceLink[index]);
+    // 奇怪的现象，这里只能下载脚本来引入
     const tplPath = path.join(
       globalState.extensionContext.extensionPath,
       'templates',
-      `${index}.js`
+      `js/frontend-rss/${index}.js`
     );
     fs.writeFileSync(tplPath, item);
 
-    if (index === 4) {
-      html = html.replace(
-        sourceLink[œ],
-        `\n<script type="text/javascript" src="./${index}.js"></script>\n`
-      );
-    } else {
-      console.log(111, item.length);
-      html = html.replace(
-        sourceLink[index],
-        `
-        <script type="text/javascript">
-        ${item}
-        </script>\n`
-      );
-    }
-    /*  html = html.replace(
+    const scriptPathOnDisk = Uri.joinPath(
+      extensionUri,
+      'templates',
+      `js/frontend-rss/${index}.js`
+    );
+    const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
+    html = html.replace(
       sourceLink[index],
-      `\n<script type="text/javascript" src="./${index}.js"></script>\n`
-    ); */
+      `\n<script type="text/javascript" src="${scriptUri}"></script>\n`
+    );
   });
   const cssRes = await batchGet(cssList);
   cssRes.forEach((item, index) => {
     html = html.replace(cssSourceLink[index], `\n<style>${item}</style>\n`);
   });
-  sourceLink.forEach((item) => {
-    html = html.replace(item, '$&');
-  });
-  console.log(
-    222,
-    html.indexOf(
-      '<script type=text/javascript src=/static/js/vendor.dfe1b4f115d599289330.js></script>'
-    )
-  );
-  const tplPath2 = path.join(
-    globalState.extensionContext.extensionPath,
-    'templates',
-    `aaa.js`
-  );
-  fs.writeFileSync(tplPath2, scriptRes[1]);
+
   return html;
 }
 
@@ -78,7 +58,7 @@ export function findHtmlScriptLink(html = '', url: string) {
   const srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?><\/script>/i;
   const arr = html.match(scriptReg) || [];
   const linkList = [];
-  console.log(arr);
+  // console.log(arr);
   for (let i = 0; i < arr.length; i++) {
     const src = arr[i].match(srcReg) || [];
     //获取脚本链接地址
@@ -98,7 +78,7 @@ export function findHtmlCSSLink(html = '', url: string) {
   const srcReg = /href=[\'\"]?([^\'\"]*)[\'\"]?(rel=stylesheet)>/i;
   const arr = html.match(scriptReg) || [];
   const linkList = [];
-  console.log(arr);
+  // console.log(arr);
   for (let i = 0; i < arr.length; i++) {
     const src = arr[i].match(srcReg) || [];
     //获取href地址

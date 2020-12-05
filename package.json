@@ -1,11 +1,11 @@
 {
-  "name": "frontend-blog",
-  "displayName": "frontend-blog",
+  "name": "frontend-box",
+  "displayName": "frontend-box",
   "description": "VSCode 里订阅查看前端技术文章",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/giscafer/vscode-frontend-blog.git"
+    "url": "https://github.com/giscafer/vscode-frontend-box.git"
   },
   "engines": {
     "vscode": "^1.51.0"
@@ -22,7 +22,7 @@
       "activitybar": [
         {
           "id": "frontendBlog",
-          "title": "前端博客",
+          "title": "前端盒子",
           "icon": "resources/logo.svg"
         }
       ]
@@ -41,7 +41,7 @@
     },
     "commands": [
       {
-        "command": "frontend-blog.helloWorld",
+        "command": "frontend-box.helloWorld",
         "title": "Hello World"
       }
     ]
@@ -49,12 +49,34 @@
   "scripts": {
     "vscode:prepublish": "yarn run compile",
     "compile": "tsc -p ./",
-    "lint": "eslint src --ext ts",
+    "lint": "eslint src --ext ts  --ignore-path .gitignore",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/_test/runTest.js",
+    "deploy": "vsce publish --yarn",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "npm run commitmsg"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --ext .js",
+      "git add ."
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.0",
@@ -63,8 +85,12 @@
     "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",
+    "husky": "^4.3.4",
+    "lint-staged": "^10.5.3",
     "mocha": "^7.1.2",
+    "prettier": "^2.2.1",
     "typescript": "^3.8.3",
+    "vsce": "^1.81.1",
     "vscode-test": "^1.3.0"
   },
   "dependencies": {

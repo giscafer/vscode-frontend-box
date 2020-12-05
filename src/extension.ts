@@ -4,14 +4,14 @@
 import { commands, ExtensionContext, window } from 'vscode';
 import globalState from './globalState';
 import { BlogProvider } from './view/blogProvider';
-import { viewBlog, viewBlogByIframe } from './webview/blog';
+import { viewBlog, viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "frontend-blog" is now active!');
+  console.log('Congratulations, your extension "frontend-box" is now active!');
   globalState.extensionContext = context;
 
   const blogNodeProvider = new BlogProvider();
@@ -23,9 +23,11 @@ export function activate(context: ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   context.subscriptions.push(
+    commands.registerCommand('blog.viewerByMarkdown', (title, url) => {
+      viewBlogByMarkdown('文章列表', url);
+    }),
     commands.registerCommand('blog.viewer', (title, url) => {
-      // viewBlogByIframe(title, url)
-      viewBlog(title, url);
+      viewBlogByIframe(title, url);
     })
   );
 }

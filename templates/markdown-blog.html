@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Marked in the browser</title>
+    <style>
+      .night {
+        margin: 0 auto;
+        /* background: #000; */
+        font-family: Georgia, Palatino, serif;
+        color: #eee;
+        line-height: 1;
+        max-width: 960px;
+        padding: 30px;
+      }
+      .night h1,
+      .night h2,
+      .night h3,
+      .night h4 {
+        font-weight: 400;
+      }
+      .night h1,
+      .night h2,
+      .night h3,
+      .night h4,
+      .night h5,
+      .night p {
+        margin-bottom: 24px;
+        padding: 0;
+      }
+      .night h1 {
+        font-size: 48px;
+      }
+      .night h2 {
+        font-size: 36px;
+        margin: 24px 0 6px;
+      }
+      .night h3 {
+        font-size: 24px;
+      }
+      .night h4 {
+        font-size: 21px;
+      }
+      .night h5 {
+        font-size: 18px;
+      }
+      .night a {
+        color: #61bfc1;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: baseline;
+      }
+      .night a:hover {
+        text-decoration: underline;
+      }
+      .night a:visited {
+        color: #466b6c;
+      }
+      .night ul,
+      .night ol {
+        padding: 0;
+        margin: 0;
+      }
+      .night li {
+        line-height: 24px;
+      }
+      .night li ul,
+      .night li ul {
+        margin-left: 24px;
+      }
+      .night p,
+      .night ul,
+      .night ol {
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 540px;
+      }
+      .night pre {
+        padding: 0px 24px;
+        max-width: 800px;
+        white-space: pre-wrap;
+      }
+      .night code {
+        font-family: Consolas, Monaco, Andale Mono, monospace;
+        line-height: 1.5;
+        font-size: 13px;
+      }
+      .night aside {
+        display: block;
+        float: right;
+        width: 390px;
+      }
+      .night blockquote {
+        border-left: 0.5em solid #eee;
+        padding: 0 2em;
+        margin-left: 0;
+        max-width: 476px;
+      }
+      .night blockquote cite {
+        font-size: 14px;
+        line-height: 20px;
+        color: #bfbfbf;
+      }
+      .night blockquote cite:before {
+        content: '\2014 \00A0';
+      }
+      .night blockquote p {
+        color: #666;
+        max-width: 460px;
+      }
+      .night hr {
+        width: 540px;
+        text-align: left;
+        margin: 0 auto 0 0;
+        color: #999;
+      }
+      /* Code below this line is copyright Twitter Inc. */
+      .night button,
+      .night input,
+      .night select,
+      .night textarea {
+        font-size: 100%;
+        margin: 0;
+        vertical-align: baseline;
+        *vertical-align: middle;
+      }
+      .night button,
+      .night input {
+        line-height: normal;
+        *overflow: visible;
+      }
+      .night button::-moz-focus-inner,
+      .night input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+      }
+      .night button,
+      .night input[type='button'],
+      .night input[type='reset'],
+      .night input[type='submit'] {
+        cursor: pointer;
+        -webkit-appearance: button;
+      }
+      .night input[type='checkbox'],
+      .night input[type='radio'] {
+        cursor: pointer;
+      }
+      /* override default chrome & firefox settings */
+      .night input:not([type='image']),
+      .night textarea {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+      }
+      .night input[type='search'] {
+        -webkit-appearance: textfield;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+      }
+      .night input[type='search']::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      .night label,
+      .night input,
+      .night select,
+      .night textarea {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: normal;
+        margin-bottom: 18px;
+      }
+      .night input[type='checkbox'],
+      .night input[type='radio'] {
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+      .night input[type='text'],
+      .night input[type='password'],
+      .night textarea,
+      .night select {
+        display: inline-block;
+        width: 210px;
+        padding: 4px;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: 18px;
+        height: 18px;
+        color: #808080;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+      .night select,
+      .night input[type='file'] {
+        height: 27px;
+        line-height: 27px;
+      }
+      .night textarea {
+        height: auto;
+      }
+      /* grey out placeholders */
+      .night :-moz-placeholder {
+        color: #bfbfbf;
+      }
+      .night ::-webkit-input-placeholder {
+        color: #bfbfbf;
+      }
+      .night input[type='text'],
+      .night input[type='password'],
+      .night select,
+      .night textarea {
+        -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+        -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s;
+        -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .night input[type='text']:focus,
+      .night input[type='password']:focus,
+      .night textarea:focus {
+        outline: none;
+        border-color: rgba(82, 168, 236, 0.8);
+        -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+          0 0 8px rgba(82, 168, 236, 0.6);
+        -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+          0 0 8px rgba(82, 168, 236, 0.6);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+          0 0 8px rgba(82, 168, 236, 0.6);
+      }
+      /* buttons */
+      .night button {
+        display: inline-block;
+        padding: 4px 14px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        background-color: #0064cd;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(
+          linear,
+          left top,
+          left bottom,
+          from(#049cdb),
+          to(#0064cd)
+        );
+        background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+        background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          color-stop(0%, #049cdb),
+          color-stop(100%, #0064cd)
+        );
+        background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+        background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+        background-image: linear-gradient(top, #049cdb, #0064cd);
+        color: #fff;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        border: 1px solid #004b9a;
+        border-bottom-color: #003f81;
+        -webkit-transition: 0.1s linear all;
+        -moz-transition: 0.1s linear all;
+        transition: 0.1s linear all;
+        border-color: #0064cd #0064cd #003f81;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+      }
+      .night button:hover {
+        color: #fff;
+        background-position: 0 -15px;
+        text-decoration: none;
+      }
+      .night button:active {
+        -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .night button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body class="night">
+    <div id="content"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      const vscode = acquireVsCodeApi();
+      const contentEl = document.getElementById('content');
+      function getData(markdownUrl) {
+        fetch(markdownUrl)
+          .then((res) => {
+            return res.text();
+          })
+          .then((md) => {
+            md = md
+              .replace(':alarm_clock:', '⏰ ')
+              .replace(
+                '[来源分类](../README.md)',
+                '<a class="type" data-url="https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/README.md">来源分类</a>'
+              )
+              .replace(
+                '[标签分类](../TAGS.md)',
+                '<a class="type" data-url="https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/TAGS.md">标签分类</a>'
+              )
+              .replace(
+                '[时间分类](../TIMELINE.md)',
+                '<a class="type" data-url="https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/TIMELINE.md">时间分类</a>'
+              );
+            contentEl.innerHTML = marked(md);
+            document.querySelectorAll('.type').forEach((element) => {
+              element.onclick = function (evt) {
+                const target = evt.target;
+                console.log(target);
+                const url = target.getAttribute('data-url');
+                console.log(url);
+                getData(url);
+              };
+            });
+          });
+      }
+      window.addEventListener('message', (event) => {
+        const msg = event.data;
+        console.log(msg);
+        switch (msg.command) {
+          case 'viewBlogCommand':
+            getData(msg.data.url);
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
