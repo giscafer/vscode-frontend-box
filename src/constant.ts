@@ -1,3 +1,8 @@
+export interface SiteType {
+  title: string;
+  url: string;
+}
+
 export const BLOG_CATEGORY = [
   {
     title: 'Front-End RSS',
@@ -32,14 +37,6 @@ export const BLOG_CATEGORY = [
     icon: 'wechat',
   },
   {
-    title: 'Taobao-FED-|-淘宝前端团队',
-    description: '淘宝前端盒子',
-    command: 'blog.viewerByMarkdown',
-    url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/Taobao-FED-|-淘宝前端团队.md',
-    icon: 'blog',
-  },
-  {
     title: '阮一峰的网络日志',
     description: '阮一峰的网络日志',
     command: 'blog.viewerByMarkdown',
@@ -53,6 +50,14 @@ export const BLOG_CATEGORY = [
     command: 'blog.viewerByMarkdown',
     url:
       'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/张鑫旭-鑫空间-鑫生活.md',
+    icon: 'blog',
+  },
+  {
+    title: 'Taobao-FED-|-淘宝前端团队',
+    description: '淘宝前端盒子',
+    command: 'blog.viewerByMarkdown',
+    url:
+      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/Taobao-FED-|-淘宝前端团队.md',
     icon: 'blog',
   },
   {

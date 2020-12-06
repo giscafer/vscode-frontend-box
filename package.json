@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "frontend-box",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -44,23 +44,82 @@
           "name": "博客"
         },
         {
+          "id": "view.mark",
+          "name": "收藏夹"
+        },
+        {
           "id": "view.other",
-          "name": "其他"
+          "name": "其他功能 WIP……"
         }
       ]
     },
     "commands": [
       {
-        "command": "frontend-box.helloWorld",
-        "title": "Hello World"
+        "command": "mark.add",
+        "title": "添加网址",
+        "icon": {
+          "light": "resources/light/add.svg",
+          "dark": "resources/dark/add.svg"
+        }
+      },
+      {
+        "command": "mark.delete",
+        "title": "删除网址",
+        "icon": {
+          "light": "resources/light/del.svg",
+          "dark": "resources/dark/del.svg"
+        }
       }
     ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "mark.add",
+          "when": "view == view.mark",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "mark.delete",
+          "when": "view == view.mark",
+          "group": "group1"
+        },
+        {
+          "command": "mark.delete",
+          "when": "view == view.mark",
+          "group": "inline"
+        }
+      ]
+    },
     "viewsWelcome": [
       {
         "view": "view.other",
-        "contents": "WIP……敬请关注！！"
+        "contents": "敬请关注！！欢迎PR >> [Github](https://github.com/giscafer/vscode-frontend-box)"
       }
-    ]
+    ],
+    "configuration": {
+      "properties": {
+        "frontend-box.markbook": {
+          "type": "array",
+          "default": [
+            {
+              "title": "Web 技术周刊",
+              "url": "https://www.yuque.com/awesome/fe_weekly"
+            },
+            {
+              "title": "科技爱好者周刊",
+              "url": "https://www.yuque.com/ruanyf/weekly"
+            },
+            {
+              "title": "产品经理知识整理",
+              "url": "https://www.yuque.com/weis/pm"
+            }
+          ],
+          "description": "收藏网址"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

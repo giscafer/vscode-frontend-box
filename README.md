@@ -11,12 +11,16 @@
 
 </div>
 
-![](./demo.png)
+![](https://raw.githubusercontent.com/giscafer/vscode-frontend-box/main/demo.png)
 
 ## Contributing
 
 欢迎 PR 共建维护！
 
-## 相关插件
+## Related
 
 - [leek-fund(韭菜盒子)](https://github.com/giscafer/leek-fund)
+
+## License
+
+MIT

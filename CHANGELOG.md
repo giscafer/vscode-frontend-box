@@ -2,6 +2,10 @@
 
 Github 源码：https://github.com/giscafer/vscode-frontend-box
 
+## [v0.0.6]
+
+- feat: 新增收藏夹功能
+
 ## [v0.0.4]
 
 - 优化网页直接打开方式为内置浏览器开启
