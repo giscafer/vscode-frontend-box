@@ -2,15 +2,13 @@
 // Import the module and reference it with the alias vscode in your code below
 
 import { commands, ExtensionContext, window } from 'vscode';
+import { BrowserViewWindowManager } from './browser/BrowserViewWindowManager';
+import { Telemetry } from './browser/telemetry';
 import globalState from './globalState';
 import { BlogProvider } from './view/blogProvider';
-import { viewBlog, viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
+import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "frontend-box" is now active!');
   globalState.extensionContext = context;
 
@@ -19,9 +17,40 @@ export function activate(context: ExtensionContext) {
     treeDataProvider: blogNodeProvider,
   });
   blogNodeProvider.refresh();
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
+
+  //  内置浏览器
+  const telemetry = new Telemetry();
+
+  const windowManager = new BrowserViewWindowManager(
+    context.extensionPath,
+    telemetry
+  );
+
+  telemetry.sendEvent('activate');
+
+  context.subscriptions.push(
+    commands.registerCommand('frontend-box.openPreview', (title, url?) => {
+      telemetry.sendEvent('openPreview');
+      windowManager.create(url);
+    }),
+
+    commands.registerCommand('frontend-box.openActiveFile', () => {
+      const activeEditor = window.activeTextEditor;
+      if (!activeEditor) {
+        return; // no active editor: ignore the command
+      }
+
+      // get active url
+      const filename = activeEditor.document.fileName;
+
+      telemetry.sendEvent('openActiveFile');
+
+      if (filename) {
+        windowManager.create(`file://${filename}`);
+      }
+    })
+  );
+
   context.subscriptions.push(
     commands.registerCommand('blog.viewerByMarkdown', (title, url) => {
       viewBlogByMarkdown('文章列表', url);
