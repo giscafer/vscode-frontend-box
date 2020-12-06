@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "frontend-box",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -112,6 +112,7 @@
   "dependencies": {
     "amplitude": "^5.1.4",
     "axios": "^0.21.0",
+    "es6-promisify": "^6.1.1",
     "event-emitter-enhancer": "^2.0.0",
     "eventemitter2": "^6.4.3",
     "events": "^3.2.0",
