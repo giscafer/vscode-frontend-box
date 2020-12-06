@@ -305,6 +305,7 @@
       const vscode = acquireVsCodeApi();
       const contentEl = document.getElementById('content');
       function getData(markdownUrl) {
+        console.log(markdownUrl);
         fetch(markdownUrl)
           .then((res) => {
             return res.text();

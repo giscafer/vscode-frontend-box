@@ -67,10 +67,10 @@ export function activate(context: ExtensionContext) {
   });
 
   context.subscriptions.push(
-    commands.registerCommand('blog.viewerByMarkdown', (title, url) => {
+    commands.registerCommand('blog.viewerByMarkdown', (url, title) => {
       viewBlogByMarkdown('文章列表', url);
     }),
-    commands.registerCommand('blog.viewer', (title, url) => {
+    commands.registerCommand('blog.viewer', (url, title) => {
       viewBlogByIframe(title, url);
     }),
     commands.registerCommand('mark.delete', ({ id }) => {
