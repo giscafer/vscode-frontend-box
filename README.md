@@ -13,6 +13,8 @@
 
 ![](https://raw.githubusercontent.com/giscafer/vscode-frontend-box/main/demo.png)
 
+> 博客功能走 github 的文件 api，保证 Google 能访问就保证没问题。如果不能，可能偶尔不行。
+
 ## Contributing
 
 欢迎 PR 共建维护！
