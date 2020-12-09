@@ -13,7 +13,11 @@
 
 ![](https://raw.githubusercontent.com/giscafer/vscode-frontend-box/main/demo.png)
 
+## 博客网络请求问题解决方案
+
 > 博客功能走 github 的文件 api，保证 Google 能访问就保证没问题。如果不能，可能偶尔不行。
+
+建议参考 https://github.com/hawtim/blog/issues/10 设置，保证你电脑访问 `raw.githubusercontent.com` 网址正常。那博客的内容就是正常的。
 
 ## Contributing
 
