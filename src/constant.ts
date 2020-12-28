@@ -17,7 +17,7 @@ export const BLOG_CATEGORY = [
     description: '前端早读课公众号',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/前端早读课.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/前端早读课.md',
     icon: 'wechat',
   },
   {
@@ -25,7 +25,7 @@ export const BLOG_CATEGORY = [
     description: '前端大全公众号',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/前端大全.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/前端大全.md',
     icon: 'wechat',
   },
   {
@@ -33,7 +33,7 @@ export const BLOG_CATEGORY = [
     description: '前端之巅公众号',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/前端之巅.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/前端之巅.md',
     icon: 'wechat',
   },
   {
@@ -41,7 +41,7 @@ export const BLOG_CATEGORY = [
     description: '阮一峰的网络日志',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/阮一峰的网络日志.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/阮一峰的网络日志.md',
     icon: 'blog',
   },
   {
@@ -49,7 +49,7 @@ export const BLOG_CATEGORY = [
     description: '张鑫旭博客',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/张鑫旭-鑫空间-鑫生活.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/张鑫旭-鑫空间-鑫生活.md',
     icon: 'blog',
   },
   {
@@ -57,7 +57,7 @@ export const BLOG_CATEGORY = [
     description: '淘宝前端盒子',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/Taobao-FED-|-淘宝前端团队.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/Taobao-FED-|-淘宝前端团队.md',
     icon: 'blog',
   },
   {
@@ -65,7 +65,7 @@ export const BLOG_CATEGORY = [
     description: '凹凸实验室博客',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/Aotu-|-凹凸实验室.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/Aotu-|-凹凸实验室.md',
     icon: 'blog',
   },
   {
@@ -73,7 +73,7 @@ export const BLOG_CATEGORY = [
     description: 'JDC-|-京东设计中心',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/details/JDC-|-京东设计中心.md',
+      'https://raw.sevencdn.com/ChanceYu/front-end-rss/master/details/JDC-|-京东设计中心.md',
     icon: 'blog',
   },
 ];

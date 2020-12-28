@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "前端盒子",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -106,6 +106,14 @@
             {
               "title": "Web 技术周刊",
               "url": "https://www.yuque.com/awesome/fe_weekly"
+            },
+            {
+              "title": "前端速递",
+              "url": "https://www.yuque.com/spfe/fe-express"
+            },
+            {
+              "title": "前端小册",
+              "url": "https://www.yuque.com/robinson/fe-guide"
             },
             {
               "title": "科技爱好者周刊",
