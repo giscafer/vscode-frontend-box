@@ -2,6 +2,10 @@
 
 Github 源码：https://github.com/giscafer/vscode-frontend-box
 
+## [v0.1.1]
+
+- feat: 新增待阅读文章列表
+
 ## [v0.1.0]
 
 - chore: github raw 资源更换为国内代理地址

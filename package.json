@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "前端盒子",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -48,15 +48,28 @@
           "name": "收藏夹"
         },
         {
+          "id": "view.readlater",
+          "name": "稍后阅读"
+        },
+        {
           "id": "view.other",
-          "name": "其他功能 WIP……"
+          "name": "其他功能 WIP……",
+          "visibility": "collapsed"
         }
       ]
     },
     "commands": [
       {
         "command": "mark.add",
-        "title": "添加网址",
+        "title": "添加收藏网页",
+        "icon": {
+          "light": "resources/light/add.svg",
+          "dark": "resources/dark/add.svg"
+        }
+      },
+      {
+        "command": "readlater.add",
+        "title": "添加待阅读文章",
         "icon": {
           "light": "resources/light/add.svg",
           "dark": "resources/dark/add.svg"
@@ -64,7 +77,15 @@
       },
       {
         "command": "mark.delete",
-        "title": "删除网址",
+        "title": "删除收藏",
+        "icon": {
+          "light": "resources/light/del.svg",
+          "dark": "resources/dark/del.svg"
+        }
+      },
+      {
+        "command": "readlater.delete",
+        "title": "删除",
         "icon": {
           "light": "resources/light/del.svg",
           "dark": "resources/dark/del.svg"
@@ -77,6 +98,11 @@
           "command": "mark.add",
           "when": "view == view.mark",
           "group": "navigation"
+        },
+        {
+          "command": "readlater.add",
+          "when": "view == view.readlater",
+          "group": "navigation"
         }
       ],
       "view/item/context": [
@@ -88,6 +114,11 @@
         {
           "command": "mark.delete",
           "when": "view == view.mark",
+          "group": "inline"
+        },
+        {
+          "command": "readlater.delete",
+          "when": "view == view.readlater",
           "group": "inline"
         }
       ]
@@ -125,6 +156,16 @@
             }
           ],
           "description": "收藏网址"
+        },
+        "frontend-box.readlater": {
+          "type": "array",
+          "default": [
+            {
+              "title": "2020 前端技术发展回顾",
+              "url": "https://www.yuque.com/mmfe/weekly/kfegso"
+            }
+          ],
+          "description": "待阅读文章"
         }
       }
     }

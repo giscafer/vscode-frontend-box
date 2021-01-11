@@ -34,7 +34,7 @@ export function getTemplateFileContent(tplName: string) {
     'templates',
     tplName
   );
-  console.log('tplPath=', tplPath);
+  // console.log('tplPath=', tplPath);
   const html = fs.readFileSync(tplPath, 'utf-8');
   return html;
 }
@@ -107,7 +107,6 @@ export function findHtmlCSSLink(html = '', url: string) {
     const src = arr[i].match(srcReg) || [];
     //获取href地址
     if (src[1]) {
-      console.log('已匹配的地址' + (i + 1) + '：' + src[1]);
       linkList.push(`${url}${src[1]}`);
     }
   }
@@ -119,13 +118,19 @@ async function batchGet(urls: string[] = []) {
   const pList: Promise<String>[] = [];
   console.log(urls);
   urls.forEach((url: string) => {
-    pList.push(
-      Axios.get(url).then((rep) => {
-        return rep.data;
-      })
-    );
+    pList.push(fetch(url));
   });
   return Promise.all(pList).then((res) => {
     return res;
   });
+}
+
+export function fetch(url: string) {
+  return Axios.get(url).then((rep) => {
+    return rep.data;
+  });
+}
+
+export function isRemoteLink(link: string) {
+  return /^(https?):/.test(link);
 }

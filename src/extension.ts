@@ -6,8 +6,10 @@ import { BaseConfig } from './BaseConfig';
 import { BrowserViewWindowManager } from './browser/BrowserViewWindowManager';
 import { Telemetry } from './browser/telemetry';
 import globalState from './globalState';
+import { fetch, isRemoteLink } from './utils';
 import { BlogProvider } from './view/blogProvider';
 import { MarkbookProvider } from './view/markProvider';
+import { ReadLaterProvider } from './view/ReadlaterProvider';
 import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
 export function activate(context: ExtensionContext) {
@@ -16,14 +18,19 @@ export function activate(context: ExtensionContext) {
 
   const blogNodeProvider = new BlogProvider();
   const markNodeProvider = new MarkbookProvider();
+  const readLaterProvider = new ReadLaterProvider();
   const blogView = window.createTreeView('view.blog', {
     treeDataProvider: blogNodeProvider,
   });
   const markView = window.createTreeView('view.mark', {
     treeDataProvider: markNodeProvider,
   });
+  const readLaterView = window.createTreeView('view.readlater', {
+    treeDataProvider: readLaterProvider,
+  });
   blogNodeProvider.refresh();
   markNodeProvider.refresh();
+  readLaterProvider.refresh();
 
   //  内置浏览器
   const telemetry = new Telemetry();
@@ -59,14 +66,40 @@ export function activate(context: ExtensionContext) {
   );
 
   globalState.events.addListener('refresh-view', (type) => {
-    if (type === 'mark') {
+    if (type === 'mark' && markView.visible) {
       markNodeProvider.refresh();
-    } else if (type === 'blog') {
+    } else if (type === 'blog' && blogView.visible) {
       blogNodeProvider.refresh();
+    } else if (type === 'readlater' && readLaterView.visible) {
+      readLaterProvider.refresh();
     }
   });
 
   context.subscriptions.push(
+    commands.registerCommand('readlater.add', (url, title) => {
+      window
+        .showInputBox({
+          placeHolder: '粘贴网址URL',
+        })
+        .then((url: any) => {
+          if (!url) {
+            return;
+          }
+          if (!isRemoteLink(url)) {
+            window.showErrorMessage('添加失败，URL 必须是 http 或 https 开头');
+            return;
+          }
+          fetch(url).then((res) => {
+            const matcher = res.match(/<title>([\S\s]*?)<\/title>/);
+            const title = matcher[1];
+            BaseConfig.updateConfig('frontend-box.readlater', [
+              { title, url },
+            ]).then(() => {
+              globalState.events.emit('refresh-view', 'readlater');
+            });
+          });
+        });
+    }),
     commands.registerCommand('blog.viewerByMarkdown', (url, title) => {
       viewBlogByMarkdown('文章列表', url);
     }),
@@ -81,34 +114,25 @@ export function activate(context: ExtensionContext) {
     commands.registerCommand('mark.add', (title, url) => {
       window
         .showInputBox({
-          placeHolder: '第一步：输入名称',
+          placeHolder: '粘贴收藏网址URL',
         })
-        .then((title: any) => {
-          if (!title) {
+        .then((url: any) => {
+          if (!url) {
             return;
           }
-          console.log(title);
-          window
-            .showInputBox({
-              placeHolder: '第二步：填写网址url',
-            })
-            .then((url: any) => {
-              console.log(url);
-              if (!url) {
-                return;
-              }
-              if (/^(http|https)/.test(url) !== true) {
-                window.showErrorMessage(
-                  '添加失败，URL 必须是 http 或 https 开头'
-                );
-                return;
-              }
-              BaseConfig.updateConfig('frontend-box.markbook', [
-                { title, url },
-              ]).then(() => {
-                globalState.events.emit('refresh-view', 'mark');
-              });
+          if (!isRemoteLink(url)) {
+            window.showErrorMessage('添加失败，URL 必须是 http 或 https 开头');
+            return;
+          }
+          fetch(url).then((res) => {
+            const matcher = res.match(/<title>([\S\s]*?)<\/title>/);
+            const title = matcher[1];
+            BaseConfig.updateConfig('frontend-box.markbook', [
+              { title, url },
+            ]).then(() => {
+              globalState.events.emit('refresh-view', 'mark');
             });
+          });
         });
     })
   );
