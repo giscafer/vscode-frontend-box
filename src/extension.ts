@@ -100,6 +100,11 @@ export function activate(context: ExtensionContext) {
           });
         });
     }),
+    commands.registerCommand('readlater.delete', ({ id }) => {
+      BaseConfig.removeConfig('frontend-box.readlater', id).then(() => {
+        globalState.events.emit('refresh-view', 'readlater');
+      });
+    }),
     commands.registerCommand('blog.viewerByMarkdown', (url, title) => {
       viewBlogByMarkdown('文章列表', url);
     }),
