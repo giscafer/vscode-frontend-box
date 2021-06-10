@@ -4,6 +4,16 @@ import * as path from 'path';
 import { Uri, Webview } from 'vscode';
 import globalState from './globalState';
 
+// create unique id from letters and numbers
+export const uniqueAlphaNumericId = (() => {
+  const heyStack = '0123456789abcdefghijklmnopqrstuvwxyz';
+  const randomInt = () =>
+    Math.floor(Math.random() * Math.floor(heyStack.length));
+
+  return (length = 24) =>
+    Array.from({ length }, () => heyStack[randomInt()]).join('');
+})();
+
 /**
  * 数组去重
  */
@@ -13,7 +23,7 @@ export const uniq = (elements: Array<string | number>) => {
   }
 
   return elements.filter(
-    (element, index) => index === elements.indexOf(element)
+    (element, index) => index === elements.indexOf(element),
   );
 };
 
@@ -32,7 +42,7 @@ export function getTemplateFileContent(tplName: string) {
   const tplPath = path.join(
     globalState.extensionContext.extensionPath,
     'templates',
-    tplName
+    tplName,
   );
   // console.log('tplPath=', tplPath);
   const html = fs.readFileSync(tplPath, 'utf-8');
@@ -52,19 +62,19 @@ export async function getHtmlFromUrl(webview: Webview, url: string) {
     const tplPath = path.join(
       globalState.extensionContext.extensionPath,
       'templates',
-      `js/frontend-rss/${index}.js`
+      `js/frontend-rss/${index}.js`,
     );
     fs.writeFileSync(tplPath, item);
 
     const scriptPathOnDisk = Uri.joinPath(
       extensionUri,
       'templates',
-      `js/frontend-rss/${index}.js`
+      `js/frontend-rss/${index}.js`,
     );
     const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
     html = html.replace(
       sourceLink[index],
-      `\n<script type="text/javascript" src="${scriptUri}"></script>\n`
+      `\n<script type="text/javascript" src="${scriptUri}"></script>\n`,
     );
   });
   const cssRes = await batchGet(cssList);

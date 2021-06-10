@@ -9,6 +9,7 @@ import {
 import { BaseConfig } from '../BaseConfig';
 import { SiteType } from '../constant';
 import globalState from '../globalState';
+import { uniqueAlphaNumericId } from '../utils';
 
 export class MarkbookProvider implements TreeDataProvider<TreeItem> {
   private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
@@ -24,17 +25,17 @@ export class MarkbookProvider implements TreeDataProvider<TreeItem> {
   getChildren(): TreeItem[] | Thenable<TreeItem[]> {
     const sites = BaseConfig.getConfig('frontend-box.markbook');
     return sites.map((item: SiteType) => {
-      const { title, url } = item;
+      const { title, url, id } = item;
       const tree = new TreeItem(title, TreeItemCollapsibleState.None);
       tree.command = {
         title,
         command: 'frontend-box.openPreview',
         arguments: [url],
       };
-      tree.id = url;
+      tree.id = id;
       tree.tooltip = url;
       tree.iconPath = globalState.extensionContext?.asAbsolutePath(
-        join('resources', `sitepage.svg`)
+        join('resources', `sitepage.svg`),
       );
       return tree;
     });

@@ -2,6 +2,11 @@
 
 Github 源码：https://github.com/giscafer/vscode-frontend-box
 
+## [v0.1.3]
+
+- feat: 支持右键编辑标题
+- chore: 优化已知问题
+
 ## [v0.1.1]
 
 - feat: 新增待阅读文章列表

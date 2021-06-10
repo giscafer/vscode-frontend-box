@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "前端盒子",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -76,6 +76,22 @@
         }
       },
       {
+        "command": "mark.edit",
+        "title": "编辑标题",
+        "icon": {
+          "light": "resources/light/edit.svg",
+          "dark": "resources/dark/edit.svg"
+        }
+      },
+      {
+        "command": "readlater.edit",
+        "title": "编辑标题",
+        "icon": {
+          "light": "resources/light/edit.svg",
+          "dark": "resources/dark/edit.svg"
+        }
+      },
+      {
         "command": "mark.delete",
         "title": "删除收藏",
         "icon": {
@@ -110,6 +126,16 @@
           "command": "mark.delete",
           "when": "view == view.mark",
           "group": "group1"
+        },
+        {
+          "command": "mark.edit",
+          "when": "view == view.mark",
+          "group": "group0"
+        },
+        {
+          "command": "readlater.edit",
+          "when": "view == view.readlater",
+          "group": "group0"
         },
         {
           "command": "mark.delete",

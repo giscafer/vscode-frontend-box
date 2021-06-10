@@ -16,7 +16,7 @@ export class BaseConfig {
 
   static setConfig(
     cfgKey: string,
-    cfgValue: Array<any> | string | number | Object
+    cfgValue: Array<any> | string | number | Object,
   ) {
     const config = workspace.getConfiguration();
     return config.update(cfgKey, cfgValue, true);
@@ -31,6 +31,7 @@ export class BaseConfig {
   }
 
   static removeConfig(cfgKey: string, code: string) {
+    console.log(cfgKey, code);
     const config = workspace.getConfiguration();
     const sourceCfg = config.get(cfgKey, []);
     const newCfg = sourceCfg.filter((item: any) => {

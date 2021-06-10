@@ -6,7 +6,8 @@ import { BaseConfig } from './BaseConfig';
 import { BrowserViewWindowManager } from './browser/BrowserViewWindowManager';
 import { Telemetry } from './browser/telemetry';
 import globalState from './globalState';
-import { fetch, isRemoteLink } from './utils';
+import { upgrade } from './upgrade';
+import { fetch, isRemoteLink, uniqueAlphaNumericId } from './utils';
 import { BlogProvider } from './view/blogProvider';
 import { MarkbookProvider } from './view/markProvider';
 import { ReadLaterProvider } from './view/ReadlaterProvider';
@@ -15,7 +16,7 @@ import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 export function activate(context: ExtensionContext) {
   console.log('Congratulations, your extension "frontend-box" is now active!');
   globalState.extensionContext = context;
-
+  upgrade();
   const blogNodeProvider = new BlogProvider();
   const markNodeProvider = new MarkbookProvider();
   const readLaterProvider = new ReadLaterProvider();
@@ -37,7 +38,7 @@ export function activate(context: ExtensionContext) {
 
   const windowManager = new BrowserViewWindowManager(
     context.extensionPath,
-    telemetry
+    telemetry,
   );
 
   telemetry.sendEvent('activate');
@@ -62,7 +63,7 @@ export function activate(context: ExtensionContext) {
       if (filename) {
         windowManager.create(`file://${filename}`);
       }
-    })
+    }),
   );
 
   globalState.events.addListener('refresh-view', (type) => {
@@ -93,7 +94,7 @@ export function activate(context: ExtensionContext) {
             const matcher = res.match(/<title>([\S\s]*?)<\/title>/);
             const title = matcher[1];
             BaseConfig.updateConfig('frontend-box.readlater', [
-              { title, url },
+              { title, url, id: uniqueAlphaNumericId() },
             ]).then(() => {
               globalState.events.emit('refresh-view', 'readlater');
             });
@@ -116,6 +117,54 @@ export function activate(context: ExtensionContext) {
         globalState.events.emit('refresh-view', 'mark');
       });
     }),
+    commands.registerCommand('readlater.edit', ({ id }) => {
+      const markData = BaseConfig.getConfig('frontend-box.readlater');
+      window
+        .showInputBox({
+          placeHolder: '请输入标题',
+        })
+        .then((txt: any) => {
+          if (!txt) {
+            return;
+          }
+          if (!txt) {
+            window.showErrorMessage('不能为空');
+            return;
+          }
+          markData.map((item: any) => {
+            if (item.id === id) {
+              item.title = txt;
+            }
+          });
+          BaseConfig.setConfig('frontend-box.readlater', markData).then(() => {
+            globalState.events.emit('refresh-view', 'readlater');
+          });
+        });
+    }),
+    commands.registerCommand('mark.edit', ({ id }) => {
+      const markData = BaseConfig.getConfig('frontend-box.markbook');
+      window
+        .showInputBox({
+          placeHolder: '请输入标题',
+        })
+        .then((txt: any) => {
+          if (!txt) {
+            return;
+          }
+          if (!txt) {
+            window.showErrorMessage('不能为空');
+            return;
+          }
+          markData.map((item: any) => {
+            if (item.id === id) {
+              item.title = txt;
+            }
+          });
+          BaseConfig.setConfig('frontend-box.markbook', markData).then(() => {
+            globalState.events.emit('refresh-view', 'mark');
+          });
+        });
+    }),
     commands.registerCommand('mark.add', (title, url) => {
       window
         .showInputBox({
@@ -133,13 +182,13 @@ export function activate(context: ExtensionContext) {
             const matcher = res.match(/<title>([\S\s]*?)<\/title>/);
             const title = matcher[1];
             BaseConfig.updateConfig('frontend-box.markbook', [
-              { title, url },
+              { title, url, id: uniqueAlphaNumericId() },
             ]).then(() => {
               globalState.events.emit('refresh-view', 'mark');
             });
           });
         });
-    })
+    }),
   );
 }
 

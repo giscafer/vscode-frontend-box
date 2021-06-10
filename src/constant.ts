@@ -1,10 +1,12 @@
 export interface SiteType {
   title: string;
   url: string;
+  id: string;
 }
 
 export const BLOG_CATEGORY = [
   {
+    id: 'ferss',
     title: 'Front-End RSS',
     description:
       '前端早读课、前端大全、前端之巅、淘宝前端、张鑫旭博客、凹凸实验室',
@@ -13,6 +15,7 @@ export const BLOG_CATEGORY = [
     icon: 'rss',
   },
   {
+    id: 'zdk',
     title: '前端早读课',
     description: '前端早读课公众号',
     command: 'blog.viewerByMarkdown',
@@ -21,6 +24,7 @@ export const BLOG_CATEGORY = [
     icon: 'wechat',
   },
   {
+    id: 'qddq',
     title: '前端大全',
     description: '前端大全公众号',
     command: 'blog.viewerByMarkdown',
@@ -29,6 +33,7 @@ export const BLOG_CATEGORY = [
     icon: 'wechat',
   },
   {
+    id: 'qdzd',
     title: '前端之巅',
     description: '前端之巅公众号',
     command: 'blog.viewerByMarkdown',
@@ -37,6 +42,7 @@ export const BLOG_CATEGORY = [
     icon: 'wechat',
   },
   {
+    id: 'ryf',
     title: '阮一峰的网络日志',
     description: '阮一峰的网络日志',
     command: 'blog.viewerByMarkdown',
@@ -45,6 +51,7 @@ export const BLOG_CATEGORY = [
     icon: 'blog',
   },
   {
+    id: 'zxx',
     title: '张鑫旭博客',
     description: '张鑫旭博客',
     command: 'blog.viewerByMarkdown',
@@ -53,6 +60,7 @@ export const BLOG_CATEGORY = [
     icon: 'blog',
   },
   {
+    id: 'taobao',
     title: 'Taobao-FED-|-淘宝前端团队',
     description: '淘宝前端盒子',
     command: 'blog.viewerByMarkdown',
@@ -61,6 +69,7 @@ export const BLOG_CATEGORY = [
     icon: 'blog',
   },
   {
+    id: 'aoto',
     title: 'Aotu-|-凹凸实验室',
     description: '凹凸实验室博客',
     command: 'blog.viewerByMarkdown',
@@ -69,6 +78,7 @@ export const BLOG_CATEGORY = [
     icon: 'blog',
   },
   {
+    id: 'jdc',
     title: 'JDC-|-京东设计中心',
     description: 'JDC-|-京东设计中心',
     command: 'blog.viewerByMarkdown',

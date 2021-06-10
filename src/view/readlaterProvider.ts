@@ -24,17 +24,17 @@ export class ReadLaterProvider implements TreeDataProvider<TreeItem> {
   getChildren(): TreeItem[] | Thenable<TreeItem[]> {
     const sites = BaseConfig.getConfig('frontend-box.readlater');
     return sites.map((item: SiteType) => {
-      const { title, url } = item;
+      const { title, url, id } = item;
       const tree = new TreeItem(title, TreeItemCollapsibleState.None);
       tree.command = {
         title,
         command: 'frontend-box.openPreview',
         arguments: [url],
       };
-      tree.id = url;
+      tree.id = id;
       tree.tooltip = url;
       tree.iconPath = globalState.extensionContext?.asAbsolutePath(
-        join('resources', `arcticle.svg`)
+        join('resources', `arcticle.svg`),
       );
       return tree;
     });
