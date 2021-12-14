@@ -3,7 +3,7 @@ name: Deploy  By Commit
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
