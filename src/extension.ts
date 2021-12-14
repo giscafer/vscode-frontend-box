@@ -10,7 +10,7 @@ import { upgrade } from './upgrade';
 import { fetch, isRemoteLink, uniqueAlphaNumericId } from './utils';
 import { BlogProvider } from './view/blogProvider';
 import { MarkbookProvider } from './view/markProvider';
-import { ReadLaterProvider } from './view/ReadlaterProvider';
+import { ReadLaterProvider } from './view/readlaterProvider';
 import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
 export function activate(context: ExtensionContext) {
