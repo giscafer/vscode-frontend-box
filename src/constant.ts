@@ -15,6 +15,15 @@ export const BLOG_CATEGORY = [
     icon: 'rss',
   },
   {
+    id: 'leerob',
+    title: 'Lee Robinson',
+    description:
+      'Helping developers build a faster web. Teaching about web development, serverless, and React / Next.js',
+    command: 'frontend-box.openPreview',
+    url: 'https://leerob.io/blog',
+    icon: 'blog',
+  },
+  {
     id: 'zdk',
     title: '前端早读课',
     description: '前端早读课公众号',
