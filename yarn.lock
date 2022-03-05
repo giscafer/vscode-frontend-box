@@ -2204,6 +2204,11 @@ nice-try@^1.0.4:
   resolved "https://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
+nice-try@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/nice-try/-/nice-try-3.0.0.tgz#38f7584ae0d3703cde8317bb78fdbc4ef6dffe40"
+  integrity sha512-JVAWBFZ6kFO/c6jtbcYAM4aAJK5XnAOyWAgBZ53V1HUNTfIjJdjXa96oWhDpegeQSRhTQXpOwU5bpYbzkkrcSA==
+
 node-environment-flags@1.0.6:
   version "1.0.6"
   resolved "https://registry.npm.taobao.org/node-environment-flags/download/node-environment-flags-1.0.6.tgz#a30ac13621f6f7d674260a54dede048c3982c088"

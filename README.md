@@ -26,6 +26,7 @@
 ## Related
 
 - [leek-fund(韭菜盒子)](https://github.com/giscafer/leek-fund)
+- [RootHub(前端研发平台)](https://marketplace.visualstudio.com/items?itemName=giscafer.roothub)
 
 ## License
 
