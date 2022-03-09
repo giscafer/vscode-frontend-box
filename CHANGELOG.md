@@ -2,6 +2,10 @@
 
 Github 源码：https://github.com/giscafer/vscode-frontend-box
 
+## [v0.1.6]
+
+- github 资源更换为 `https://raw.githubusercontents.com/` 域名
+
 ## [v0.1.4]
 
 - feat: 新增博客
