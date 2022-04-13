@@ -6,7 +6,7 @@ function reSetConfig(configKey:string){
   const config = BaseConfig.getConfig(configKey);
   config.map((item: any) => {
     // 未设定，则自动添加ID
-    if (!item.id) {
+    if (typeof item ==='object' && !item.id) {
       item.id = uniqueAlphaNumericId();
     }
   });
@@ -20,4 +20,6 @@ export function initConfig() {
   reSetConfig('frontend-box.bookMark');
   // 更新 readLater
   reSetConfig('frontend-box.readLater');
+  // 更新 disableToolBar
+  reSetConfig('frontend-box.disableToolBar');
 }

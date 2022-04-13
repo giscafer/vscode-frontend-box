@@ -195,6 +195,13 @@ export function activate(context: ExtensionContext) {
         });
     }),
   );
+
+  context.subscriptions.push(
+    commands.registerCommand('frontend-box.weread',()=>{
+      telemetry.sendEvent('openPreview');
+      windowManager.create('https://weread.qq.com');
+    })
+  )
 }
 
 // this method is called when your extension is deactivated

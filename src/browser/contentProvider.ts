@@ -9,7 +9,7 @@ export default class ContentProvider {
     this.config = config;
   }
 
-  getContent() {
+  getContent(disableToolBar = false) {
     const manifest = require(path.join(this.config.extensionPath, 'build', 'asset-manifest.json'));
     const mainScript = manifest['main.js'];
     const mainStyle = manifest['main.css'];
@@ -39,7 +39,7 @@ export default class ContentProvider {
 
     const stylePathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', mainStyle));
     const styleUri = stylePathOnDisk.with({ scheme: 'vscode-resource' });
-    const customStyle = this.config.disableToolBarList.length ? `<style>.toolbar{display:none;}</style>`:``;
+    const customStyle = disableToolBar ? `<style>.toolbar{display:none;}</style>`:``;
 
     return `<!DOCTYPE html>
                 <html lang="en">

@@ -41,7 +41,7 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
           }
         });
       }
-    } catch (err:any) {
+    } catch (err: any) {
       vscode.window.showErrorMessage(err.message);
     }
     // let columnNumber = <number>this.config.columnNumber;
@@ -62,7 +62,12 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
         ],
       }
     );
-    this._panel.webview.html = this.contentProvider.getContent();
+    let innerHtml = this.contentProvider.getContent();
+    if (startUrl === 'https://weread.qq.com') {
+      innerHtml = this.contentProvider.getContent(true);
+    }
+
+    this._panel.webview.html = innerHtml;
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
     this._panel.webview.onDidReceiveMessage(
       (msg) => {
@@ -124,7 +129,7 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
               this.browserPage.send(msg.type, msg.params, msg.callbackId);
             }
             this.emit(msg.type, msg.params);
-          } catch (err:any) {
+          } catch (err: any) {
             vscode.window.showErrorMessage(err);
           }
         }
