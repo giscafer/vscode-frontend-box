@@ -70,7 +70,7 @@ export default class Browser extends EventEmitter {
         this.browser.close();
         this.browser = null;
       }
-      resolve();
+      resolve(true);
     });
   }
 }

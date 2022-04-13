@@ -33,6 +33,7 @@ export class Telemetry {
     let extension = vscode.extensions.getExtension(
       'auchenberg.vscode-browser-preview'
     );
+    // 未安装，默认是 <none>
     let extensionVersion = extension ? extension.packageJSON.version : '<none>';
 
     // Store
@@ -56,7 +57,7 @@ export class Telemetry {
     if (!this.isTelemetryEnabled) {
       return;
     }
-    /* 
+    /*
     let data = {
       ...params,
       distinct_id: this.userId,

@@ -48,7 +48,7 @@
           "name": "收藏夹"
         },
         {
-          "id": "view.readlater",
+          "id": "view.readLater",
           "name": "稍后阅读"
         },
         {
@@ -68,7 +68,7 @@
         }
       },
       {
-        "command": "readlater.add",
+        "command": "readLater.add",
         "title": "添加待阅读文章",
         "icon": {
           "light": "resources/light/add.svg",
@@ -84,7 +84,7 @@
         }
       },
       {
-        "command": "readlater.edit",
+        "command": "readLater.edit",
         "title": "编辑标题",
         "icon": {
           "light": "resources/light/edit.svg",
@@ -100,7 +100,7 @@
         }
       },
       {
-        "command": "readlater.delete",
+        "command": "readLater.delete",
         "title": "删除",
         "icon": {
           "light": "resources/light/del.svg",
@@ -116,8 +116,8 @@
           "group": "navigation"
         },
         {
-          "command": "readlater.add",
-          "when": "view == view.readlater",
+          "command": "readLater.add",
+          "when": "view == view.readLater",
           "group": "navigation"
         }
       ],
@@ -133,8 +133,8 @@
           "group": "group0"
         },
         {
-          "command": "readlater.edit",
-          "when": "view == view.readlater",
+          "command": "readLater.edit",
+          "when": "view == view.readLater",
           "group": "group0"
         },
         {
@@ -143,8 +143,8 @@
           "group": "inline"
         },
         {
-          "command": "readlater.delete",
-          "when": "view == view.readlater",
+          "command": "readLater.delete",
+          "when": "view == view.readLater",
           "group": "inline"
         }
       ]
@@ -157,7 +157,7 @@
     ],
     "configuration": {
       "properties": {
-        "frontend-box.markbook": {
+        "frontend-box.bookMark": {
           "type": "array",
           "default": [
             {
@@ -183,7 +183,7 @@
           ],
           "description": "收藏网址"
         },
-        "frontend-box.readlater": {
+        "frontend-box.readLater": {
           "type": "array",
           "default": [
             {

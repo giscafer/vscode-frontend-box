@@ -11,7 +11,7 @@ import { SiteType } from '../constant';
 import globalState from '../globalState';
 import { uniqueAlphaNumericId } from '../utils';
 
-export class MarkbookProvider implements TreeDataProvider<TreeItem> {
+export class bookMarkProvider implements TreeDataProvider<TreeItem> {
   private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
 
   readonly onDidChangeTreeData: Event<any> = this._onDidChangeTreeData.event;
@@ -23,7 +23,7 @@ export class MarkbookProvider implements TreeDataProvider<TreeItem> {
   }
 
   getChildren(): TreeItem[] | Thenable<TreeItem[]> {
-    const sites = BaseConfig.getConfig('frontend-box.markbook');
+    const sites = BaseConfig.getConfig('frontend-box.bookMark');
     return sites.map((item: SiteType) => {
       const { title, url, id } = item;
       const tree = new TreeItem(title, TreeItemCollapsibleState.None);

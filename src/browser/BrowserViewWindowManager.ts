@@ -13,7 +13,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
   private defaultConfig: ExtensionConfiguration;
   private telemetry: Telemetry;
 
-  constructor(extensionPath: string, telemetry: Telemetry) {
+  constructor(extensionPath: string, telemetry: Telemetry,disableToolBarList:string[]) {
     super();
     this.openWindows = new Set();
     this.telemetry = telemetry;
@@ -22,6 +22,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
       startUrl: 'http://code.visualstudio.com',
       format: 'jpeg',
       columnNumber: 2,
+      disableToolBarList:disableToolBarList
     };
     this.refreshSettings();
 
@@ -63,7 +64,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
   }
 
   public async create(startUrl?: string, id?: string) {
-    console.log(startUrl);
+    console.log("startUrl:",startUrl);
     this.refreshSettings();
     let config = { ...this.defaultConfig };
 

@@ -39,6 +39,7 @@ export default class ContentProvider {
 
     const stylePathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', mainStyle));
     const styleUri = stylePathOnDisk.with({ scheme: 'vscode-resource' });
+    const customStyle = this.config.disableToolBarList.length ? `<style>.toolbar{display:none;}</style>`:``;
 
     return `<!DOCTYPE html>
                 <html lang="en">
@@ -48,8 +49,9 @@ export default class ContentProvider {
                     <base href="${vscode.Uri.file(path.join(this.config.extensionPath, 'build')).with({
                       scheme: 'vscode-resource'
                     })}/">
+                    ${customStyle}
                 </head>
-    
+
                 <body>
                     <div id="root"></div>
                     <script src="${runtimescriptUri}"></script>
