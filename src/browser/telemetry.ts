@@ -1,9 +1,10 @@
+var Mixpanel = require('mixpanel');
 import * as vscode from 'vscode';
 const osName = require('os-name');
 const publicIp = require('public-ip');
-var Amplitude = require('amplitude');
 
 export class Telemetry {
+  client: any;
   amplitude: any;
   userId: string;
   ip: string;
@@ -24,32 +25,26 @@ export class Telemetry {
       return;
     }
 
-    if (this.amplitude) {
+    if (this.client) {
       return;
     }
 
-    this.amplitude = new Amplitude('ab1883d0fa15e411b12ee8fdf476b952');
+    this.client = Mixpanel.init('d0149f7b700b44a18fa53e2cab03b564');
 
-    let extension = vscode.extensions.getExtension(
-      'auchenberg.vscode-browser-preview'
-    );
-    // 未安装，默认是 <none>
+    let extension = vscode.extensions.getExtension('auchenberg.vscode-browser-preview');
     let extensionVersion = extension ? extension.packageJSON.version : '<none>';
 
     // Store
     this.ip = await publicIp.v4();
 
-    // Amplitude
-    this.amplitude.identify({
-      user_id: this.userId,
+    // Mixpanel
+    this.client.people.set(this.userId, {
+      sessionId: vscode.env.sessionId,
       language: vscode.env.language,
+      vscodeVersion: vscode.version,
       platform: osName(),
-      app_version: extensionVersion,
-      ip: this.ip,
-      user_properties: {
-        vscodeSessionId: vscode.env.sessionId,
-        vscodeVersion: vscode.version,
-      },
+      version: extensionVersion,
+      ip: this.ip
     });
   }
 
@@ -57,24 +52,18 @@ export class Telemetry {
     if (!this.isTelemetryEnabled) {
       return;
     }
-    /*
+
     let data = {
       ...params,
       distinct_id: this.userId,
-      ip: this.ip,
+      ip: this.ip
     };
 
-    // Amplitude
-    this.amplitude.track({
-      event_type: eventName,
-      event_properties: params,
-      user_id: this.userId,
-      ip: this.ip,
-    }); */
+    // Mixpanel
+    this.client.track(eventName, data);
   }
 
   configurationChanged(e: vscode.ConfigurationChangeEvent) {
-    vscode.window.showInformationMessage('Updated');
     this.getSettingFromConfig();
   }
 

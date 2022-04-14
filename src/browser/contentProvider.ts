@@ -28,8 +28,8 @@ export default class ContentProvider {
       }
     }
 
-    const runtimescriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', runtimeScript));
-    const runtimescriptUri = runtimescriptPathOnDisk.with({
+    const runtimeScriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', runtimeScript));
+    const runtimeScriptUri = runtimeScriptPathOnDisk.with({
       scheme: 'vscode-resource'
     });
     const mainScriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', mainScript));
@@ -54,7 +54,7 @@ export default class ContentProvider {
 
                 <body>
                     <div id="root"></div>
-                    <script src="${runtimescriptUri}"></script>
+                    <script src="${runtimeScriptUri}"></script>
                     ${chunkScriptsUri.map((item) => `<script src="${item}"></script>`)}
                     <script src="${mainScriptUri}"></script>
                 </body>

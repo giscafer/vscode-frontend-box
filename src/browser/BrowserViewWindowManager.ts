@@ -32,9 +32,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
   }
 
   private refreshSettings() {
-    let extensionSettings = vscode.workspace.getConfiguration(
-      'browser-preview'
-    );
+    let extensionSettings = vscode.workspace.getConfiguration('browser-preview');
     if (extensionSettings) {
       let chromeExecutable = extensionSettings.get<string>('chromeExecutable');
       if (chromeExecutable !== undefined) {
@@ -64,7 +62,6 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
   }
 
   public async create(startUrl?: string, id?: string) {
-    console.log("startUrl:",startUrl);
     this.refreshSettings();
     let config = { ...this.defaultConfig };
 
