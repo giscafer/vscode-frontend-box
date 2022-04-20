@@ -6,7 +6,7 @@ import Browser from "./browser";
 import BrowserPage from "./browserPage";
 import { ExtensionConfiguration } from "./extensionConfiguration";
 import ContentProvider from "./contentProvider";
-const uuidV4 = require("uuid/v4");
+const {v4: uuidV4}= require("uuid");
 
 export const PANEL_TITLE = "Browser Preview";
 
@@ -41,7 +41,7 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
           }
         });
       }
-    } catch (err: any) {
+    } catch (err) {
       vscode.window.showErrorMessage(err.message);
     }
     // let columnNumber = <number>this.config.columnNumber;
@@ -126,7 +126,7 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
               this.browserPage.send(msg.type, msg.params, msg.callbackId);
             }
             this.emit(msg.type, msg.params);
-          } catch (err: any) {
+          } catch (err) {
             vscode.window.showErrorMessage(err);
           }
         }
