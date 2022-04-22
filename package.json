@@ -270,6 +270,7 @@
     "os-name": "^4.0.0",
     "public-ip": "^4.0.2",
     "puppeteer-core": "^5.5.0",
+    "tcp-ping-node": "^1.0.0",
     "uuid": "^8.3.1",
     "which-chrome": "^0.1.1"
   }

@@ -3587,6 +3587,11 @@ tar-stream@^2.1.4:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
+tcp-ping-node@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tcp-ping-node/-/tcp-ping-node-1.0.0.tgz#6b8a84b581beab540e4ff7aa21fb8678145f900c"
+  integrity sha512-1NwP/CNqr1qBYkrhjEUxfK/QHOgMuHlvXiuqVm5bLFcmVV4nK5vWHJ1MEBlget5BjDLitL5KfrOTMOwbFrISyQ==
+
 text-extensions@^1.0.0:
   version "1.9.0"
   resolved "https://registry.npm.taobao.org/text-extensions/download/text-extensions-1.9.0.tgz?cache=0&sync_timestamp=1606552713080&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftext-extensions%2Fdownload%2Ftext-extensions-1.9.0.tgz#1853e45fee39c945ce6f6c36b2d659b5aabc2a26"

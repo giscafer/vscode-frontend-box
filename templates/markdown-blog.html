@@ -348,7 +348,7 @@
     function getData(markdownUrl) {
       console.log(markdownUrl);
       const resUrl = encodeURI(markdownUrl);
-      fetch(resUrl, { mode: 'no-cors' })
+      fetch(resUrl)
         .then((res) => {
           return res.text();
         })
