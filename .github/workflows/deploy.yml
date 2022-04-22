@@ -1,0 +1,37 @@
+name: Deploy By Manually
+
+on:
+  push:
+    branches:
+      - giscafer # 不自动构建
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install Dependencies
+        run: |
+          yarn
+      - name: Create Tag
+        run: |
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git config --global user.name ${{ secrets.USER_NAME }}
+          yarn release
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+      - name: Publish extension
+        # if: startsWith( env.commitmsg , 'chore(release):' )
+        run: |
+          yarn
+          yarn deploy -p ${{ secrets.VSCE_TOKEN }}
