@@ -325,7 +325,7 @@
                 '[时间分类](../TIMELINE.md)',
                 '<a class="type" data-url="https://raw.githubusercontent.com/ChanceYu/front-end-rss/master/TIMELINE.md">时间分类</a>'
               );
-            contentEl.innerHTML = marked(md);
+            contentEl.innerHTML = marked.parse(md);
             document.querySelectorAll('.type').forEach((element) => {
               element.onclick = function (evt) {
                 const target = evt.target;
@@ -339,10 +339,12 @@
       }
       window.addEventListener('message', (event) => {
         const msg = event.data;
-        console.log(msg);
+        console.log('msg:',msg);
         switch (msg.command) {
           case 'viewBlogCommand':
             getData(msg.data.url);
+            console.log('getData done');
+
             break;
         }
       });

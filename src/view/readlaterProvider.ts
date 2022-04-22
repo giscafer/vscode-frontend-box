@@ -10,7 +10,7 @@ import { BaseConfig } from '../BaseConfig';
 import { SiteType } from '../constant';
 import globalState from '../globalState';
 
-export class ReadLaterProvider implements TreeDataProvider<TreeItem> {
+export class readLaterProvider implements TreeDataProvider<TreeItem> {
   private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
 
   readonly onDidChangeTreeData: Event<any> = this._onDidChangeTreeData.event;
@@ -22,7 +22,7 @@ export class ReadLaterProvider implements TreeDataProvider<TreeItem> {
   }
 
   getChildren(): TreeItem[] | Thenable<TreeItem[]> {
-    const sites = BaseConfig.getConfig('frontend-box.readlater');
+    const sites = BaseConfig.getConfig('frontend-box.readLater');
     return sites.map((item: SiteType) => {
       const { title, url, id } = item;
       const tree = new TreeItem(title, TreeItemCollapsibleState.None);
@@ -34,7 +34,7 @@ export class ReadLaterProvider implements TreeDataProvider<TreeItem> {
       tree.id = id;
       tree.tooltip = url;
       tree.iconPath = globalState.extensionContext?.asAbsolutePath(
-        join('resources', `arcticle.svg`),
+        join('resources', `article.svg`),
       );
       return tree;
     });

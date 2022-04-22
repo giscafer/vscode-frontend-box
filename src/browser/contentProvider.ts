@@ -9,7 +9,7 @@ export default class ContentProvider {
     this.config = config;
   }
 
-  getContent() {
+  getContent(disableToolBar = false) {
     const manifest = require(path.join(this.config.extensionPath, 'build', 'asset-manifest.json'));
     const mainScript = manifest['main.js'];
     const mainStyle = manifest['main.css'];
@@ -28,8 +28,8 @@ export default class ContentProvider {
       }
     }
 
-    const runtimescriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', runtimeScript));
-    const runtimescriptUri = runtimescriptPathOnDisk.with({
+    const runtimeScriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', runtimeScript));
+    const runtimeScriptUri = runtimeScriptPathOnDisk.with({
       scheme: 'vscode-resource'
     });
     const mainScriptPathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', mainScript));
@@ -39,6 +39,7 @@ export default class ContentProvider {
 
     const stylePathOnDisk = vscode.Uri.file(path.join(this.config.extensionPath, 'build', mainStyle));
     const styleUri = stylePathOnDisk.with({ scheme: 'vscode-resource' });
+    const customStyle = disableToolBar ? `<style>.toolbar{display:none;}</style>`:``;
 
     return `<!DOCTYPE html>
                 <html lang="en">
@@ -48,11 +49,12 @@ export default class ContentProvider {
                     <base href="${vscode.Uri.file(path.join(this.config.extensionPath, 'build')).with({
                       scheme: 'vscode-resource'
                     })}/">
+                    ${customStyle}
                 </head>
-    
+
                 <body>
                     <div id="root"></div>
-                    <script src="${runtimescriptUri}"></script>
+                    <script src="${runtimeScriptUri}"></script>
                     ${chunkScriptsUri.map((item) => `<script src="${item}"></script>`)}
                     <script src="${mainScriptUri}"></script>
                 </body>
