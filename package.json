@@ -214,7 +214,8 @@
     "pretest": "yarn run compile && yarn run lint",
     "test": "node ./out/_test/runTest.js",
     "deploy": "vsce publish --yarn",
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
