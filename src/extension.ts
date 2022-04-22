@@ -9,8 +9,8 @@ import globalState from './globalState';
 import { initConfig } from './initConfig';
 import { fetch, isRemoteLink, uniqueAlphaNumericId } from './utils';
 import { BlogProvider } from './view/blogProvider';
-import { bookMarkProvider } from './view/markProvider';
-import { readLaterProvider } from './view/readLaterProvider';
+import { BookMarkProvider } from './view/markProvider';
+import { ReadLaterProvider } from './view/readlaterProvider';
 import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
 export function activate(context: ExtensionContext) {
@@ -20,8 +20,8 @@ export function activate(context: ExtensionContext) {
   initConfig();
   // 实例化Provider
   const blogNodeProvider = new BlogProvider();
-  const markNodeProvider = new bookMarkProvider();
-  const readNodeProvider = new readLaterProvider();
+  const markNodeProvider = new BookMarkProvider();
+  const readNodeProvider = new ReadLaterProvider();
   // 创建Tree视图
   const blogView = window.createTreeView('view.blog', {
     treeDataProvider: blogNodeProvider,
@@ -38,7 +38,7 @@ export function activate(context: ExtensionContext) {
 
   //  内置浏览器
   const telemetry = new Telemetry();
-  const disableToolBarList = BaseConfig.getConfig('frontend-box.disableToolBar',[])
+  const disableToolBarList = BaseConfig.getConfig('frontend-box.disableToolBar',[]);
 
   const windowManager = new BrowserViewWindowManager(
     context.extensionPath,

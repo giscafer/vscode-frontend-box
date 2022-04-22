@@ -11,7 +11,7 @@ import { SiteType } from '../constant';
 import globalState from '../globalState';
 import { uniqueAlphaNumericId } from '../utils';
 
-export class bookMarkProvider implements TreeDataProvider<TreeItem> {
+export class BookMarkProvider implements TreeDataProvider<TreeItem> {
   private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
 
   readonly onDidChangeTreeData: Event<any> = this._onDidChangeTreeData.event;

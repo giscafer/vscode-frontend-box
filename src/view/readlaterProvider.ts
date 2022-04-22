@@ -10,7 +10,7 @@ import { BaseConfig } from '../BaseConfig';
 import { SiteType } from '../constant';
 import globalState from '../globalState';
 
-export class readLaterProvider implements TreeDataProvider<TreeItem> {
+export class ReadLaterProvider implements TreeDataProvider<TreeItem> {
   private _onDidChangeTreeData: EventEmitter<any> = new EventEmitter<any>();
 
   readonly onDidChangeTreeData: Event<any> = this._onDidChangeTreeData.event;
