@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/giscafer/vscode-frontend-box/compare/v0.1.7...v0.1.8) (2022-04-22)
+
+
+### Features
+
+* 检测raw.githubusercontent.com 网络，不通则切换 fastgit ([8099bc9](https://github.com/giscafer/vscode-frontend-box/commit/8099bc9ff8968267191014d8b9e6afb12b0bfb93))
+
 ### 0.1.7 (2022-04-22)
 
 
