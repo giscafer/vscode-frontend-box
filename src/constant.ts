@@ -24,6 +24,24 @@ export const BLOG_CATEGORY = [
     icon: 'blog',
   },
   {
+    id: 'ryf',
+    title: '阮一峰的网络日志',
+    description: '阮一峰的网络日志',
+    command: 'blog.viewerByMarkdown',
+    url:
+      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/阮一峰的网络日志.md',
+    icon: 'blog',
+  },
+  {
+    id: 'zxx',
+    title: '张鑫旭博客',
+    description: '张鑫旭博客',
+    command: 'blog.viewerByMarkdown',
+    url:
+      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/张鑫旭-鑫空间-鑫生活.md',
+    icon: 'blog',
+  },
+  {
     id: 'zdk',
     title: '前端早读课',
     description: '前端早读课公众号',
@@ -51,48 +69,30 @@ export const BLOG_CATEGORY = [
     icon: 'wechat',
   },
   {
-    id: 'ryf',
-    title: '阮一峰的网络日志',
-    description: '阮一峰的网络日志',
-    command: 'blog.viewerByMarkdown',
-    url:
-      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/阮一峰的网络日志.md',
-    icon: 'blog',
-  },
-  {
-    id: 'zxx',
-    title: '张鑫旭博客',
-    description: '张鑫旭博客',
-    command: 'blog.viewerByMarkdown',
-    url:
-      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/张鑫旭-鑫空间-鑫生活.md',
-    icon: 'blog',
-  },
-  {
     id: 'taobao',
-    title: 'Taobao-FED-|-淘宝前端团队',
+    title: '淘系前端团队',
     description: '淘宝前端盒子',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/Taobao-FED-|-淘宝前端团队.md',
-    icon: 'blog',
+      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/淘系前端团队.md',
+    icon: 'wechat',
   },
   {
     id: 'aoto',
-    title: 'Aotu-|-凹凸实验室',
+    title: '凹凸实验室',
     description: '凹凸实验室博客',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/Aotu-|-凹凸实验室.md',
-    icon: 'blog',
+      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/凹凸实验室.md',
+    icon: 'wechat',
   },
   {
-    id: 'jdc',
-    title: 'JDC-|-京东设计中心',
-    description: 'JDC-|-京东设计中心',
+    id: 'developer',
+    title: '程序员成长指北',
+    description: '程序员成长指北',
     command: 'blog.viewerByMarkdown',
     url:
-      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/JDC-|-京东设计中心.md',
-    icon: 'blog',
+      'https://raw.fastgit.org/ChanceYu/front-end-rss/master/details/程序员成长指北.md',
+    icon: 'wechat',
   },
 ];
