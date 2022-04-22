@@ -19,6 +19,8 @@
 
 建议参考 https://github.com/hawtim/blog/issues/10 设置，保证你电脑访问 `raw.githubusercontent.com` 网址正常。那博客的内容就是正常的。
 
+> v0.1.8 版本已动态判断是否网络正常，不正常回切换到 fastgit 代理，见 [chanagelog#8099bc9](https://github.com/giscafer/vscode-frontend-box/blob/main/CHANGELOG.md#018-2022-04-22)
+
 ## Contributing
 
 欢迎 PR 共建维护！
