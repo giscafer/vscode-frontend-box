@@ -44,6 +44,10 @@
           "name": "博客"
         },
         {
+          "id": "view.interview",
+          "name": "面试"
+        },
+        {
           "id": "view.mark",
           "name": "收藏夹"
         },
@@ -201,7 +205,13 @@
           "type": "array",
           "default": [
             "https://weread.qq.com"
-          ]
+          ],
+          "description": "禁用工具栏列表"
+        },
+        "frontend-box.enableNotification": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用插件通知"
         }
       }
     }
@@ -213,6 +223,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "test": "node ./out/_test/runTest.js",
+    "package": "vsce package",
     "deploy": "vsce publish --yarn",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "release": "standard-version"

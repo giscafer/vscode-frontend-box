@@ -85,7 +85,9 @@ export default class BrowserPage extends EnhancedEventEmitter {
   }
 
   public async launch(): Promise<void> {
-    this.page = await this.browser.newPage();
+    const page = await this.browser.newPage();
+    this.page = page;
+
     this.client = await this.page.target().createCDPSession();
 
     EventEmitterEnhancer.modifyInstance(this.client);
