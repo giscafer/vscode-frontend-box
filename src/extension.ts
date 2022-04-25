@@ -13,6 +13,7 @@ import { BlogProvider } from './view/blogProvider';
 import { BookMarkProvider } from './view/markProvider';
 import { ReadLaterProvider } from './view/readlaterProvider';
 import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
+import path = require('path');
 
 export function activate(context: ExtensionContext) {
   console.log('Congratulations, your extension "frontend-box" is now active!');
@@ -209,6 +210,7 @@ export function activate(context: ExtensionContext) {
       const wr_cookie = state.get('wr_cookie');
 
       panel.title = '微信读书';
+      panel.iconPath = vscode.Uri.file(path.join(context.extensionPath,'resources/weread.png'));
       if (wr_cookie) page.setExtraHTTPHeaders({ cookie: wr_cookie });
 
       // 监听微信读书登陆
