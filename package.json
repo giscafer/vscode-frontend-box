@@ -44,10 +44,6 @@
           "name": "博客"
         },
         {
-          "id": "view.interview",
-          "name": "面试"
-        },
-        {
           "id": "view.mark",
           "name": "收藏夹"
         },
@@ -56,8 +52,8 @@
           "name": "稍后阅读"
         },
         {
-          "id": "view.other",
-          "name": "其他功能 WIP……",
+          "id": "view.interview",
+          "name": "面试",
           "visibility": "collapsed"
         }
       ]
@@ -159,7 +155,7 @@
     },
     "viewsWelcome": [
       {
-        "view": "view.other",
+        "view": "view.interview",
         "contents": "敬请关注！！欢迎PR >> [Github](https://github.com/giscafer/vscode-frontend-box)"
       }
     ],
@@ -168,6 +164,10 @@
         "frontend-box.bookMark": {
           "type": "array",
           "default": [
+            {
+              "title": "Awesome Articles List",
+              "url": "https://www.giscafer.com/blog/post-22"
+            },
             {
               "title": "Web 技术周刊",
               "url": "https://www.yuque.com/awesome/fe_weekly"

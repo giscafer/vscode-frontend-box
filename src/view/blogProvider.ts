@@ -6,7 +6,7 @@ import {
   TreeItem,
   TreeItemCollapsibleState,
 } from 'vscode';
-import { getBlogList } from '../constant';
+import { getBlogList } from '../shared/constant';
 import globalState from '../globalState';
 
 export class BlogProvider implements TreeDataProvider<TreeItem> {

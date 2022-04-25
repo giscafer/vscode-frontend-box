@@ -1,4 +1,4 @@
-import { pingGithubRaw } from "./shared/ping";
+import { pingGithubRaw } from "./ping";
 
 export interface SiteType {
   title: string;
@@ -18,6 +18,15 @@ export const getBlogList = async () => {
       command: 'frontend-box.openPreview',
       url: 'https://front-end-rss.now.sh',
       icon: 'rss',
+    },
+    {
+      id: 'overreacted',
+      title: 'Overreacted-Dan Abramov',
+      description:
+        'I explain with words and code.',
+      command: 'frontend-box.openPreview',
+      url: 'https://overreacted.io/',
+      icon: 'blog',
     },
     {
       id: 'leerob',

@@ -7,7 +7,7 @@ import {
   TreeItemCollapsibleState,
 } from 'vscode';
 import { BaseConfig } from '../BaseConfig';
-import { SiteType } from '../constant';
+import { SiteType } from '../shared/constant';
 import globalState from '../globalState';
 import { uniqueAlphaNumericId } from '../utils';
 
