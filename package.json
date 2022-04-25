@@ -205,7 +205,13 @@
           "type": "array",
           "default": [
             "https://weread.qq.com"
-          ]
+          ],
+          "description": "禁用工具栏列表"
+        },
+        "frontend-box.enableNotification": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用插件通知"
         }
       }
     }

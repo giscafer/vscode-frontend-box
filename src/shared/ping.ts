@@ -10,8 +10,9 @@ export async function pingGithubRaw() {
     if (result.success) {
         globalState.GIT_RAW_HOST = githubRawHost;
     } else {
-        window.showWarningMessage(`检测到您当前网络访问 ${githubRawHost} 超时，已切换为 ${globalState.fastGitHost}`);
+        if(globalState.configState.state.enableNotification) {
+            window.showWarningMessage(`检测到您当前网络访问 ${githubRawHost} 超时，已切换为 ${globalState.fastGitHost}`);
+        }
     }
     return globalState.GIT_RAW_HOST;
 }
-

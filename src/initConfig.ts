@@ -1,12 +1,18 @@
 import { BaseConfig } from './BaseConfig';
 import { uniqueAlphaNumericId } from './utils';
+import globalState from "./globalState";
 
 // 数据结构发生变化，兼容升级
-function reSetConfig(configKey:string){
+function reSetConfig(configKey: string) {
   const config = BaseConfig.getConfig(configKey);
+  if (configKey === 'frontend-box.enableNotification') {
+    globalState.configState.setSate('enableNotification', config);
+    return;
+  }
+
   config.map((item: any) => {
     // 未设定，则自动添加ID
-    if (typeof item ==='object' && !item.id) {
+    if (typeof item === 'object' && !item.id) {
       item.id = uniqueAlphaNumericId();
     }
   });
@@ -22,4 +28,6 @@ export function initConfig() {
   reSetConfig('frontend-box.readLater');
   // 更新 disableToolBar
   reSetConfig('frontend-box.disableToolBar');
+  // 更新 enableNotification
+  reSetConfig('frontend-box.enableNotification');
 }
