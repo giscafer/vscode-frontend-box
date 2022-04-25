@@ -28,13 +28,6 @@ All notable changes to this project will be documented in this file. See [standa
 * 修复无法解析md文件&& 同步最新Browser Preview源码 ([e6b20b2](https://github.com/giscafer/vscode-frontend-box/commit/e6b20b20eed4b6067454338624c89ef20acab6f8))
 
 
-## [v0.1.7]
-
-- 添加了微信阅读，`CTRL+P` 输入 `weread` 即可打开；
-- 新增配置项 `frontend-box.disableToolBar` ，用于设定需要禁用Browser Preview toolBar 的网址列表；
-- 修复了博客列表解析md异常的问题，使用 `raw.fasthub.org` 代理 github raw 地址，便于国内访问；
-- 同步上游Browser Preivew最新源码的build包;
-
 ## [v0.1.6]
 
 - github 资源更换为 `https://raw.githubusercontents.com/` 域名
