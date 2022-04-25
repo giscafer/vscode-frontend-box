@@ -2,7 +2,7 @@
   "name": "frontend-box",
   "displayName": "前端盒子",
   "description": "VSCode 里订阅查看前端技术文章",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/giscafer/vscode-frontend-box.git"
@@ -42,6 +42,10 @@
         {
           "id": "view.blog",
           "name": "博客"
+        },
+        {
+          "id": "view.interview",
+          "name": "面试"
         },
         {
           "id": "view.mark",
@@ -213,6 +217,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
     "test": "node ./out/_test/runTest.js",
+    "package": "vsce package",
     "deploy": "vsce publish --yarn",
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },

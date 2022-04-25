@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 import * as EventEmitter from 'eventemitter2';
+import globalState from '../globalState'
 
 import Browser from './browser';
 import { ExtensionConfiguration } from './extensionConfiguration';
@@ -13,7 +14,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
   private defaultConfig: ExtensionConfiguration;
   private telemetry: Telemetry;
 
-  constructor(extensionPath: string, telemetry: Telemetry,disableToolBarList:string[]) {
+  constructor(extensionPath: string, telemetry: Telemetry, disableToolBarList: string[]) {
     super();
     this.openWindows = new Set();
     this.telemetry = telemetry;
@@ -22,7 +23,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
       startUrl: 'http://code.visualstudio.com',
       format: 'jpeg',
       columnNumber: 2,
-      disableToolBarList:disableToolBarList
+      disableToolBarList: disableToolBarList
     };
     this.refreshSettings();
 
@@ -77,6 +78,7 @@ export class BrowserViewWindowManager extends EventEmitter.EventEmitter2 {
     let window = new BrowserViewWindow(config, this.browser, id);
 
     await window.launch(startUrl);
+
     window.once('disposed', () => {
       let id = window.id;
       this.openWindows.delete(window);

@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 
 import { commands, ExtensionContext, window } from 'vscode';
+import * as vscode from 'vscode';
 import { BaseConfig } from './BaseConfig';
 import { BrowserViewWindowManager } from './browser/BrowserViewWindowManager';
 import { Telemetry } from './browser/telemetry';
@@ -15,6 +16,7 @@ import { viewBlogByIframe, viewBlogByMarkdown } from './webview/blog';
 
 export function activate(context: ExtensionContext) {
   console.log('Congratulations, your extension "frontend-box" is now active!');
+
   globalState.extensionContext = context;
   // 初始化配置
   initConfig();
@@ -38,7 +40,7 @@ export function activate(context: ExtensionContext) {
 
   //  内置浏览器
   const telemetry = new Telemetry();
-  const disableToolBarList = BaseConfig.getConfig('frontend-box.disableToolBar',[])
+  const disableToolBarList = BaseConfig.getConfig('frontend-box.disableToolBar', [])
 
   const windowManager = new BrowserViewWindowManager(
     context.extensionPath,
@@ -197,12 +199,31 @@ export function activate(context: ExtensionContext) {
   );
 
   context.subscriptions.push(
-    commands.registerCommand('frontend-box.weread',()=>{
+    commands.registerCommand('frontend-box.weread', async () => {
       telemetry.sendEvent('openPreview');
-      windowManager.create('https://weread.qq.com');
+
+      const window = await windowManager.create('https://weread.qq.com');
+      const panel  = window._panel as vscode.WebviewPanel;
+      const page = window.browserPage?.page;
+      const state = context.globalState;
+      const wr_cookie = state.get('wr_cookie');
+
+      panel.title = '微信读书';
+      if (wr_cookie) page.setExtraHTTPHeaders({ cookie: wr_cookie });
+
+      // 监听微信读书登陆
+      page.on('response', async (res: any) => {
+        if (res.url() === 'https://weread.qq.com/web/login/weblogin') {
+          const data: string = await res.text();
+          const { vid, accessToken, refreshToken } = JSON.parse(data);
+
+          state.update('wr_cookie', `wr_vid=${vid}; wr_skey=${accessToken}; wr_rt=${refreshToken};`);
+        }
+      });
+
     })
   )
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

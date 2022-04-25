@@ -12,7 +12,7 @@ export const PANEL_TITLE = "Browser Preview";
 
 export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
   private static readonly viewType = "browser-preview";
-  private _panel: vscode.WebviewPanel | null;
+  public _panel: vscode.WebviewPanel | null;
   private _disposables: vscode.Disposable[] = [];
   private state = {};
   private contentProvider: ContentProvider;
@@ -42,7 +42,8 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
         });
       }
     } catch (err) {
-      vscode.window.showErrorMessage(err.message);
+      const {message} = err as any;
+      vscode.window.showErrorMessage(message);
     }
     // let columnNumber = <number>this.config.columnNumber;
     // var column = <any>vscode.ViewColumn[columnNumber];
@@ -68,12 +69,12 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
     this._panel.webview.onDidReceiveMessage(
       (msg) => {
-        if (msg.type === "extension.updateTitle") {
-          if (this._panel) {
-            this._panel.title = msg.params.title;
-            return;
-          }
-        }
+        // if (msg.type === "extension.updateTitle") {
+        //   if (this._panel) {
+        //     this._panel.title = msg.params.title;
+        //     return;
+        //   }
+        // }
         if (msg.type === "extension.windowOpenRequested") {
           this.emit("windowOpenRequested", {
             url: msg.params.url,
@@ -127,7 +128,7 @@ export class BrowserViewWindow extends EventEmitter.EventEmitter2 {
             }
             this.emit(msg.type, msg.params);
           } catch (err) {
-            vscode.window.showErrorMessage(err);
+            vscode.window.showErrorMessage(err as string);
           }
         }
       },

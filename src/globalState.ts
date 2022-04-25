@@ -6,5 +6,5 @@ let events = new EventEmitter();
 
 export default {
   extensionContext,
-  events,
+  events
 };
