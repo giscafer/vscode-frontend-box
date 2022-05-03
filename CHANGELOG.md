@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/giscafer/vscode-frontend-box/compare/v0.1.8...v0.1.9) (2022-05-03)
+
+
+### Features
+
+* 微信读书添加icon ([6bf1ad7](https://github.com/giscafer/vscode-frontend-box/commit/6bf1ad79a611fb746a06a46def107d35814ea100))
+* 微信阅读保留登录状态 ([b688793](https://github.com/giscafer/vscode-frontend-box/commit/b68879376ecd36ecad5d06b4c172e1a970c21698))
+* 添加配置项【启用插件通知】，默认启用通知 ([cdec7c2](https://github.com/giscafer/vscode-frontend-box/commit/cdec7c24a052db7770c97411614dc7e1673ef72d))
+
 ### [0.1.8](https://github.com/giscafer/vscode-frontend-box/compare/v0.1.7...v0.1.8) (2022-04-22)
 
 
